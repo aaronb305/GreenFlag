@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:padding="30dp"
+    tools:context=".MainActivity2">
+
+<LinearLayout
+    android:id="@+id/linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@+id/email"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="58dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:text="@string/back_button"
+        android:textColor="@color/green"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:id="@+id/makeAccount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/museo_sans300"
+        android:text="@string/accountCreation"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/museo_sans300"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="8dp"
+        android:hint="@string/see_criteria_below"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createPassword" />
+
+    <TextView
+        android:id="@+id/createPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_password"
+        android:textSize="14sp"
+        android:fontFamily="@font/museo_sans300"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailError" />
+
+    <EditText
+        android:id="@+id/repeatPasswordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="8dp"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeatPassword" />
+
+    <TextView
+        android:id="@+id/repeatPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat_password"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/museo_sans300"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordField" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <TextView
+        android:id="@+id/passwordRequirements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password_restrictions"
+        android:textSize="14sp"
+        android:fontFamily="@font/museo_sans300"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mismatchPasswordError"/>
+
+    <TextView
+        android:id="@+id/emailError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/red_black_border"
+        android:text="@string/repeat_email"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/museo_sans300"
+        app:drawableStartCompat="@drawable/cross2x"
+        android:gravity="fill"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailField" />
+
+    <TextView
+        android:id="@+id/mismatchPasswordError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/red_black_border"
+        android:text="@string/password_mismatch"
+        android:gravity="fill"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/museo_sans300"
+        android:layout_marginTop="5dp"
+        app:drawableStartCompat="@drawable/cross2x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeatPasswordField"/>
+
+
+
+    <ImageView
+        android:id="@+id/buttonColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:src="@drawable/gradient_button_background_2x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRequirements"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/museo_sans500"
+        android:text="@string/next_btn"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRequirements" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

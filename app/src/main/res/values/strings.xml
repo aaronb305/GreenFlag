@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">GreenFlag</string>
+    <string name="description">GreenFlag customers can create an account to access</string>
+    <string name="checkmark1">Car health updates</string>
+    <string name="checkmark2">Request a rescue online</string>
+    <string name="checkmark3">Policy information</string>
+    <string name="accountCreation">Create an account</string>
+    <string name="email">Email address</string>
+    <string name="create_password">Create password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="password_restrictions">Your password should have a minimum of 8 characters and contain at least one number, one uppercase and one lower case letter. You can use special characters.</string>
+    <string name="next_btn">Next</string>
+    <string name="invalid_password">One of the passwords you entered wasn\'t valid</string>
+    <string name="password_mismatch">Your passwords don\'t match</string>
+    <string name="repeat_email">An account already exists for this email address</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="see_criteria_below">See criteria below</string>
+    <string name="back_button"><![CDATA[<]]></string>
+    <string name="success">Success!</string>
+    <string name="welcome">Welcome to GreenFlag!</string>
+    <string name="invalid_password_msg">Invalid Password</string>
+    <string name="email_does_not_exist">Email does not exist</string>
+    <string name="invalid_email_msg">Invalid Email</string>
+
+</resources>
