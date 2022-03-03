@@ -167,19 +167,37 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 String password = createPassword.getText().toString().trim();
+                String passwordConfirmation = repeatPassword.getText().toString().trim();
                 if (isValidPassword(password)){
                     createPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.tick2x,0);
                     createPassword.setBackground(getDrawable(R.drawable.green_white_border));
                     passwordMismatch.setVisibility(View.GONE);
                     passwordValid = true;
+                    if (passwordConfirmation.equals(password)) {
+                        repeatPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.tick2x,0);
+                        repeatPassword.setBackground(getDrawable(R.drawable.green_white_border));
+                        passwordMismatch.setVisibility(View.GONE);
+                        confirmPassword = true;
+                    }
+                    else {
+                        repeatPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
+                        repeatPassword.setBackground(getDrawable(R.drawable.red_white_border));
+                        passwordMismatch.setText(R.string.password_mismatch);
+                        passwordMismatch.setVisibility(View.VISIBLE);
+                        confirmPassword = false;
+                    }
                 }
                 else {
                     createPassword.setBackground(getDrawable(R.drawable.red_white_border));
                     createPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
-                    passwordMismatch.setText(R.string.invalid_password);
                     passwordMismatch.setVisibility(View.VISIBLE);
+                    repeatPassword.setText("");
+                    passwordMismatch.setText(R.string.invalid_password);
+                    repeatPassword.setBackground(getDrawable(R.color.white));
+                    repeatPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                     passwordValid = false;
                 }
+
                 if (emailValid && passwordValid && confirmPassword) {
                     advance.setEnabled(true);
                     buttonColor.setColorFilter(getColor(R.color.green));

@@ -103,7 +103,7 @@
     <ImageView
         android:id="@+id/login_color"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/gradient_button_background_2x"
         app:layout_constraintBottom_toTopOf="@+id/account_color"
@@ -114,7 +114,7 @@
     <ImageView
         android:id="@+id/account_color"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="45dp"
         android:src="@drawable/gradient_button_background_2x"
         app:layout_constraintBottom_toBottomOf="@+id/account_creation"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,8 +122,8 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:text="@string/login"
@@ -138,8 +138,8 @@
 
     <Button
         android:id="@+id/account_creation"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/transparent"
         android:text="@string/accountCreation"
