@@ -8,17 +8,36 @@
     android:padding="40dp"
     tools:context=".MainActivity3">
 
-    <TextView
-        android:id="@+id/login"
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:fontFamily="@font/museo_sans300"
-        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="@string/back_button"
+            android:textColor="@color/green"
+            android:textSize="40sp"/>
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/museo_sans300"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/emailField"
@@ -40,7 +59,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/museo_sans300"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 
     <TextView
         android:id="@+id/emailError"

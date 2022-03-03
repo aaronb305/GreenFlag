@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class MainActivity3 extends AppCompatActivity {
 
     private Button login;
+    private Button back;
     private EditText emailField;
     private EditText passwordField;
     private SharedPreferences mShared;
@@ -39,6 +40,7 @@ public class MainActivity3 extends AppCompatActivity {
         super.onStart();
 
         login = findViewById(R.id.nextButton);
+        back = findViewById(R.id.backButton);
         emailField = findViewById(R.id.emailField);
         passwordField = findViewById(R.id.passwordField);
         buttonColor = findViewById(R.id.buttonColor);
@@ -140,6 +142,14 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(),MainActivity4.class);
                 startActivity(intent);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent previous = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(previous);
             }
         });
     }

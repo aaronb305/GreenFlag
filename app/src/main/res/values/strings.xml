@@ -22,5 +22,6 @@
     <string name="invalid_password_msg">Invalid Password</string>
     <string name="email_does_not_exist">Email does not exist</string>
     <string name="invalid_email_msg">Invalid Email</string>
+    <string name="loginError">Email and/or password is invalid. Try again</string>
 
 </resources>
