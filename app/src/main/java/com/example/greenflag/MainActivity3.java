@@ -1,5 +1,8 @@
 package com.example.greenflag;
 
+import static com.example.greenflag.MainActivity2.emailKey;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -58,7 +61,13 @@ public class MainActivity3 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        mShared = getApplicationContext().getSharedPreferences("SHARED_PREF_GREENFLAG", MODE_PRIVATE);
+        mShared = getApplicationContext().getSharedPreferences(MainActivity2.sharedPrefsFile, MODE_PRIVATE);
+        String storedEmail = mShared.getString(emailKey, null);
+
+        // here you can retrieve the email stored and put it into the email field
+        if (storedEmail != null) {
+            emailField.setText(storedEmail);
+        }
 
         emailField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,7 +83,9 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 email = emailField.getText().toString().trim();
-                if (mShared.getString(email, "default").equals("default")) {
+
+                // When we try to get data from shared preferences the default value should treated as null and check for no nullable value
+                if (mShared.getString(email, null) == null) {
                     emailError.setVisibility(View.VISIBLE);
                     emailField.setBackground(getDrawable(R.drawable.red_white_border));
                     emailField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
@@ -112,7 +123,8 @@ public class MainActivity3 extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 password = passwordField.getText().toString().trim();
                 email = emailField.getText().toString().trim();
-                if (MainActivity2.isValidPassword(password) && mShared.getString(email, password).equals(password)) {
+
+                if (MainActivity2.isValidPassword(password) && mShared.getString(email, null) == null) {
                     passwordField.setBackground(getDrawable(R.drawable.green_white_border));
                     passwordField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.tick2x,0);
                     passwordValid = true;
@@ -148,9 +160,20 @@ public class MainActivity3 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent previous = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(previous);
+                onBackPressed();
+//                Intent previous = new Intent(getBaseContext(), MainActivity.class);
+//                startActivity(previous);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
