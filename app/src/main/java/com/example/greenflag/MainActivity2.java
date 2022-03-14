@@ -1,5 +1,6 @@
 package com.example.greenflag;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -34,12 +35,17 @@ public class MainActivity2 extends AppCompatActivity {
     private boolean confirmPassword = false;
     private SharedPreferences mShared;
 
+    public static final String emailKey = "MY_EMAIL";
+
 
     public static boolean isValidEmailId(String email){
         return Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$").matcher(email).matches();
     }
 
-    public static boolean isValidPassword(String password){
+    public static final String sharedPrefsFile = "SHARED_PREF_GREENFLAG";
+
+    // We can use a similar approach as the email validation with a pattern matcher
+    public static boolean isValidPassword(String password) {
         int nUpper = 0;
         int nLower = 0;
         int nNumber = 0;
@@ -95,11 +101,15 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
 
+    /**
+     * Remember we can use only one text watcher if you check for focus on the EditText you need to watch
+     */
     @Override
     protected void onResume() {
         super.onResume();
 
-        mShared = getApplicationContext().getSharedPreferences("SHARED_PREF_GREENFLAG", MODE_PRIVATE);
+        // A a good practice: we set the name as an static variable
+        mShared = getApplicationContext().getSharedPreferences(sharedPrefsFile, MODE_PRIVATE);
         SharedPreferences.Editor editor = mShared.edit();
 
         emailField.addTextChangedListener(new TextWatcher() {
@@ -119,8 +129,10 @@ public class MainActivity2 extends AppCompatActivity {
                 if (isValidEmailId(email)) {
                     emailField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.tick2x,0);
                     emailField.setBackground(getDrawable(R.drawable.green_white_border));
-                    String registeredEmail = mShared.getString(emailField.getText().toString().trim(), "default");
-                    if (!registeredEmail.equals("default")) {
+
+                    // Here remember always use nullable values as default for shared preferences
+                    String registeredEmail = mShared.getString(emailField.getText().toString().trim(), null);
+                    if (registeredEmail != null) {
                         emailField.setBackground(getDrawable(R.drawable.red_white_border));
                         emailField.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
                         emailError.setText(R.string.repeat_email);
@@ -168,6 +180,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 String password = createPassword.getText().toString().trim();
                 String passwordConfirmation = repeatPassword.getText().toString().trim();
+
                 if (isValidPassword(password)){
                     createPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.tick2x,0);
                     createPassword.setBackground(getDrawable(R.drawable.green_white_border));
@@ -253,6 +266,7 @@ public class MainActivity2 extends AppCompatActivity {
         advance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editor.putString(emailKey, emailField.getText().toString().trim());
                 editor.putString(emailField.getText().toString().trim(), createPassword.getText().toString().trim());
                 editor.apply();
 
@@ -264,12 +278,23 @@ public class MainActivity2 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent previous = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(previous);
+                // Here instead of creating another Intent to go back to previous activity, remember all prev activities are stored ina  backstack
+                // you will push an activity when you move to a new one, and you can pop an activity whenever you need.
+                // when calling on back pressed you are actually calling last activity in back stack
+                onBackPressed();
+//                Intent previous = new Intent(getBaseContext(), MainActivity.class);
+//                startActivity(previous);
             }
         });
-
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
